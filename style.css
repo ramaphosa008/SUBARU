@@ -731,20 +731,35 @@ a {
 ══════════════════════════════════════ */
 
 @media (max-width: 768px) {
-  .nav { padding: 1rem 1.5rem; }
+  .nav {
+    position: relative;
+    padding: 1rem 1.5rem;
+  }
   .nav-links {
-    display: none;
-    position: fixed;
-    inset: 0;
+    display: flex;
+    position: static;
+    inset: auto;
+    width: 100%;
     background: rgba(13,10,8,0.97);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2.5rem;
-    z-index: 150;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
   }
-  .nav-links.open { display: flex; }
-  .nav-links a { font-size: 1rem; letter-spacing: 0.1em; }
+  .nav-links.open {
+    max-height: 320px;
+    padding: 1.5rem 0;
+  }
+  .nav-links a {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    width: 100%;
+    padding: 0.85rem 0;
+    text-align: center;
+  }
   .nav-toggle { display: flex; z-index: 160; }
 
   .section { padding: 4rem 1.5rem; }

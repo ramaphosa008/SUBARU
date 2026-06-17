@@ -28,6 +28,10 @@
       border-radius: 2px;
     }
 
+    .about-photo-mobile {
+      display: none;
+    }
+
     .about-photo-frame {
       width: 100%;
       aspect-ratio: 3/4;
@@ -120,8 +124,8 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 640px) {
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-photo { display: block; order: 2; }
-      .about-body { order: 1; }
+      .about-photo { display: none; }
+      .about-photo-mobile { display: block; }
       .about-photo-frame { aspect-ratio: 4 / 3; min-height: 240px; }
       .about-stats { gap: 1.5rem; }
       .timeline { padding-left: 1.5rem; }
@@ -164,6 +168,11 @@
 
               <div class="about-body">
                    <h2 class="section-title">More than a teacher</h2>
+                   <div class="about-photo about-photo-mobile">
+                     <div class="about-photo-frame">
+                       <img src="images/IMG-20260617-WA0048_1.jpg" alt="Mr. Musyoki" style="width:100%;height:100%;object-fit:cover;" />
+                     </div>
+                   </div>
           <p>
             <strong>Aloo Aloo, Mr. Musyoki😂.</strong>  Nilitaka tu kusema asante.
              More than being my class teacher and English teacher, you were like a father figure to me in school. 
