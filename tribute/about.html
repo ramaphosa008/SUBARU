@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About You</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+    <style>
+
+        /* ─── ABOUT SECTION ─── */
+    #about { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-photo {
+      position: relative;
+      border-radius: 2px;
+    }
+
+    .about-photo-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #2d1a08, #1a0a00);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Replace this with: <img src="..." style="..."> inside .about-photo-frame */
+    .about-photo-placeholder {
+      font-family: var(--serif);
+      font-style: italic;
+      color: rgba(201,168,76,0.5);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .about-photo::after {
+      content: '';
+      position: absolute;
+      inset: 12px 12px -12px -12px;
+      border: 1px solid var(--gold);
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    .about-body p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-body p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(201,168,76,0.2);
+    }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+     /* ─── FOOTER ─── */
+    footer {
+      background: #0d0a08;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer span { color: var(--gold); opacity: 0.6; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo { display: none; }
+      .about-stats { gap: 1.5rem; }
+      .timeline { padding-left: 1.5rem; }
+      nav { gap: 1.2rem; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    </style>
+</head>
+<body>
+
+
+          <!-- ── ABOUT ── -->
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav">
+    <span class="nav-brand">SUBARU BOY</span>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="memories.html">Memories</a></li>
+      <li><a href="message.html">Final Remarks</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <br><br><br><br>
+
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-photo">
+           <div class="about-photo-frame">
+             <img src="images/IMG-20260617-WA0048_1.jpg" alt="Mr. Musyoki" style="width:100%;height:100%;object-fit:cover;" />
+           </div>
+        </div>
+
+              <div class="about-body">
+                   <h2 class="section-title">More than a teacher</h2>
+          <p>
+            <strong>Aloo Aloo, Mr. Musyoki😂.</strong>  Nilitaka tu kusema asante.
+             More than being my class teacher and English teacher, you were like a father figure to me in school. 
+          </p>
+          <p>
+     When I needed something, you were always ready to avail yourself - conveying my needs to my parents, and sometimes even catering for them in their absence. 
+     When I was low, you noticed and called me aside to ask if I was doing alright. You gave me relentless advice and inspiration, and you never gave up on me even when I gave you every reason to 😂 Yes, ulikuwa nyoka sometimes, but you were also the closest thing I had to a friend.
+
+          </p>
+          <p>
+            Saying thank you feels like an understatement, but please know your care and efforts will forever be remembered. I hope blessings follow you for the rest of your days.
+          </p>
+
+          <p>
+Asante sana, Mwalimu.</p>
+
+          <div class="about-stats">
+            <div>
+              <div class="stat-number">4</div>
+              <div class="stat-label">Years together</div>
+            </div>
+            <div>
+              <div class="stat-number">∞</div>
+              <div class="stat-label">Lessons learned</div>
+            </div>
+            <div>
+              <div class="stat-number">1</div>
+              <div class="stat-label">Of a kind</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

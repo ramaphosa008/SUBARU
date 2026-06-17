@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Mr. Musyoki — With Gratitude</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #F0D898;
+      --cream: #FAF7F2;
+      --deep: #1A1614;
+      --text: #2D2520;
+      --muted: #7A6E68;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1.1rem 2rem;
+      background: transparent;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(26, 22, 20, 0.88);
+      backdrop-filter: blur(12px);
+    }
+
+    nav a {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--gold-light); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Gradient background stand-in — replace .hero-bg with an actual photo */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, #1a0a00 0%, #2d1a08 40%, #0d1a0a 100%);
+      /* ── SWAP THIS LINE with your teacher's photo: ──
+         center/cover no-repeat;
+         Then keep the overlay div below to darken it.         */
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,6,4,0.45) 0%,
+        rgba(10,6,4,0.25) 40%,
+        rgba(10,6,4,0.72) 100%
+      );
+    }
+
+    /* Floating golden particles */
+    .particles { position: absolute; inset: 0; pointer-events: none; }
+    .particle {
+      position: absolute;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      animation: drift var(--dur, 8s) var(--delay, 0s) infinite ease-in-out;
+    }
+
+    @keyframes drift {
+      0%   { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.3; }
+      100% { transform: translateY(-10vh) translateX(var(--dx, 20px)) scale(1.4); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 820px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: #fff;
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.9s 0.55s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+      max-width: 560px;
+      margin: 0 auto 2.4rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.9s 0.8s forwards;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.75rem 2.2rem;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+      opacity: 0;
+      animation: fadeUp 0.9s 1.05s forwards;
+    }
+
+    .hero-cta:hover {
+      background: var(--gold);
+      color: var(--deep);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: fadeIn 1s 1.5s both;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+      animation: pulse 2s 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 6rem 1.5rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--deep);
+      margin-bottom: 1.6rem;
+    }
+
+          
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0d0a08;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer span { color: var(--gold); opacity: 0.6; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo { display: none; }
+      .about-stats { gap: 1.5rem; }
+      .timeline { padding-left: 1.5rem; }
+      nav { gap: 1.2rem; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav">
+    <span class="nav-brand"><h2>SUBARU BOY</h2></span>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="memories.html">Memories</a></li>
+      <li><a href="message.html">Final Remarks</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg">
+      <!--
+        TO ADD YOUR TEACHER'S PHOTO:
+        Replace the style on .hero-bg with:
+        background: url('your-photo.jpg') center/cover no-repeat;
+        Or add an <img> element here positioned absolute inset-0, object-fit: cover.
+      -->
+    </div>
+    <div class="hero-overlay"></div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">A tribute from your student</p>
+      <h1 class="hero-title">
+        Thank you,<br/><em>Mr. Musyoki</em>
+      </h1>
+      <p class="hero-subtitle">
+        For every lesson that went beyond the textbook. For the patience, the
+        quiet belief, and the years you gave so generously.
+      </p>
+      <a href="about.html" class="hero-cta">Read the tribute</a>
+    </div>
+
+    <div class="scroll-hint">Scroll</div>
+  </section>
+  
+  <!-- FOOTER -->
+  <footer>
+    Made with <span>♥</span> by a student who never forgot your effort &nbsp;·&nbsp;
+   Cyril Mutua &nbsp;·&nbsp; Class of 2025
+  </footer>
+
+  <script>
+    /* ── Particles ── */
+    const container = document.getElementById('particles');
+    const count = 28;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        --dur: ${6 + Math.random() * 10}s;
+        --delay: ${Math.random() * 10}s;
+        --dx: ${(Math.random() - 0.5) * 80}px;
+      `;
+      container.appendChild(p);
+    }
+
+    /* ── Sticky nav ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── Scroll reveal ── */
+    const reveals = document.querySelectorAll('.timeline-item, .quality-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, idx) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), idx * 100);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    /* ── Subtle parallax on hero bg ── */
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+      const offset = window.scrollY;
+      if (offset < window.innerHeight) {
+        heroBg.style.transform = `translateY(${offset * 0.3}px)`;
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

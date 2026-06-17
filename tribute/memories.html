@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─── Page hero ─── */
+    .page-hero {
+      background: linear-gradient(160deg, #0d1a0a 0%, #1a2d08 50%, #0a0d1a 100%);
+      /* Replace with: background-image: url('images/class.jpg'); */
+    }
+
+    /* ─── Timeline override for dark section ─── */
+    #memories {
+      background: var(--deep);
+    }
+
+    /* Timeline items: use reveal class for animation via main.js */
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+
+    .timeline-item.reveal {
+      /* overrides shared .reveal transform to slide from left */
+      transform: translateX(-20px);
+    }
+
+    .timeline-item.reveal.visible {
+      transform: translateX(0);
+    }
+
+     /* ─── FOOTER ─── */
+    footer {
+      background: #0d0a08;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer span { color: var(--gold); opacity: 0.6; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo { display: none; }
+      .about-stats { gap: 1.5rem; }
+      .timeline { padding-left: 1.5rem; }
+      nav { gap: 1.2rem; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav">
+    <span class="nav-brand"><h2>SUBARU BOY</h2></span>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="memories.html">Memories</a></li>
+      <li><a href="message.html">Final Remarks</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── PAGE HERO BANNER ── -->
+  <div class="page-hero">
+    <div class="page-hero-bg" id="heroBg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-label">Through the years</p>
+      <h1 class="page-hero-title">Moments that  shall <em>forever</em> be remembered and cherished</h1>
+    </div>
+  </div>
+
+  <!-- ── MEMORIES / TIMELINE ── -->
+  <section id="memories" class="section">
+    <div class="container">
+      <span class="section-label">A story told in moments</span>
+          <p class="section-intro">
+        Four years hold more memories than any page can carry, but these are
+        the ones we will tell our own children about one day.
+      </p>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal from-left">
+          <div class="timeline-year">Form One </div>
+          <div class="timeline-heading">The first day he knew our names</div>
+          <p class="timeline-text">
+            Most teachers don't even know the names of their students, but you made it a point to learn them all. You would greet us by name every morning, and that small gesture made us feel seen and valued. It was the start of a relationship that would shape our high school experience. We weren't a promising class at first but you never gave up on us, and you always believed in our potential even when we didn't. That belief was the foundation of everything that came after.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal from-left">
+          <div class="timeline-year">Form Two</div>
+          <div class="timeline-heading">The exam week pep talk</div>
+          <p class="timeline-text">
+         Every time we were about to sit for exams, you would gather us in the classroom and tell us:
+          "We are capable of greatness if only we believe in ourselves and put our minds to it." And then you would smile, and we would feel ready.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal from-left">
+          <div class="timeline-year">Form Three</div>
+          <div class="timeline-heading">Sports day and the cheer that surprised us</div>
+          <p class="timeline-text">
+            You were the loudest voice in the crowd. Nobody expected that. But
+            there you were, cheering for every student regardless of house,
+            because that was just who you were. Your class followed your example and became one of the most spirited on the field, it bred the best of the best in sports and that will never be forgotten.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal from-left">
+          <div class="timeline-year">Form Four</div>
+          <div class="timeline-heading">The last class</div>
+          <p class="timeline-text">
+       You conviced our parents to fund a last class party for us. You used that opportunity to tell us that we were ready for the world, and that we should never forget the lessons we had learned in your class. You reminded us that we were capable of achieving anything we set our minds to, and that we should always strive for excellence in everything we do. 
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    Made with <span>♥</span> by a student who never forgot &nbsp;·&nbsp;
+    Kitui High &nbsp;·&nbsp; Class of 2025
+  </footer>
+  <script src="main.js" defer></script>
+</body>
+</html>
