@@ -120,7 +120,9 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 640px) {
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-photo { display: none; }
+      .about-photo { display: block; order: 2; }
+      .about-body { order: 1; }
+      .about-photo-frame { aspect-ratio: 4 / 3; min-height: 240px; }
       .about-stats { gap: 1.5rem; }
       .timeline { padding-left: 1.5rem; }
       nav { gap: 1.2rem; }
